@@ -3,5 +3,5 @@ package dragon.functionalcore
 case class Dragon(startPoint: Point, age: Int, length: Int, direction: Direction):
 
   val path: DragonPath = 
-    DragonPath(startPoint, direction, length)
-      .grow(age)
+    DragonShape(direction, age)
+      .path(startPoint, length)
