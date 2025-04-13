@@ -17,9 +17,8 @@ extension (shape: DragonShape)
     else shape.plusRotatedCopy.grow(age - 1)
 
   private def plusRotatedCopy: DragonShape =
-    shape.foldLeft(shape)((directions, direction) => direction.inverted.rotated :: directions)
+    shape ++ shape.reverse.map(_.rotated)
 
   def path(startPoint: Point, length: Int): DragonPath =
-    shape.foldLeft(List(startPoint))((path, direction) =>
-      path.head.translate(direction, length) :: path
-    )
+    shape.foldLeft(List(startPoint)):
+      (path, direction) => path.head.translate(direction, length) :: path
