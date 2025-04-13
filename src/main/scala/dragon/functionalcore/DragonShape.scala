@@ -14,10 +14,10 @@ extension (shape: DragonShape)
   @tailrec
   def grow(age: Int): DragonShape =
     if age == 0 then shape
-    else shape.plusRotatedCopy.grow(age - 1)
+    else (shape ++ shape.rotated).grow(age - 1)
 
-  private def plusRotatedCopy: DragonShape =
-    shape ++ shape.reverse.map(_.rotated)
+  private def rotated: DragonShape =
+    shape.reverse.map(_.rotated)
 
   def path(startPoint: Point, length: Int): DragonPath =
     shape.foldLeft(List(startPoint)):
